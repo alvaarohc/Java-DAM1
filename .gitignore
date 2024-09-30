@@ -1,0 +1,9 @@
+# Not needed files
+nbproject
+dist
+.idea
+build.xml
+Intro.iml
+manifest.mf
+test
+build
