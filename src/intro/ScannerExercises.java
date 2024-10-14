@@ -10,17 +10,27 @@ import java.util.Scanner;
 public class ScannerExercises {
 
     public static void main(String[] args) {
-//      getMomentOfTheDayByHourRange();
-//      getWeekDayByWeekNumber();
-//      getWeeklyPayCheck();
-//      calculateFirstGradeEcuation();
-//      System.out.println("Final grade: " + calcMedianGrade());
-//      numericGradeToReportCardGrade();
-//      calculateSecondGradeEcuation();
+//        getMomentOfTheDayByHourRange();
+//        getWeekDayByWeekNumber();
+//        getWeeklyPayCheck();
+//        calculateFirstGradeEcuation();
+//        System.out.println("Final grade: " + calcMedianGrade());
+//        numericGradeToReportCardGrade();
+//        calculateSecondGradeEcuation();
+//        calculateHoroscope();
+        getRemainingSecondsOfDayByHour();
+//        sortThreeNumbers();
+
+    }
+
+    // Utility methods
+    public static Scanner getNewScanner() {
+        Scanner sc = new Scanner(System.in);
+        return sc;
     }
 
     public static void getMomentOfTheDayByHourRange() {
-        Scanner sc = new Scanner(System.in);
+        Scanner sc = getNewScanner();
         System.out.print("Enter hour with format '12' or '20': ");
         int hour = sc.nextInt();
 
@@ -34,7 +44,7 @@ public class ScannerExercises {
     }
 
     public static void getWeekDayByWeekNumber() {
-        Scanner sc = new Scanner(System.in);
+        Scanner sc = getNewScanner();
         System.out.print("Write the week day number (1-7): ");
 
         // Output text formating
@@ -76,7 +86,7 @@ public class ScannerExercises {
     }
 
     public static void getWeeklyPayCheck() {
-        Scanner sc = new Scanner(System.in);
+        Scanner sc = getNewScanner();
         System.out.print("Enter worked hours this week: ");
 
         int workedHours = sc.nextInt();
@@ -94,7 +104,7 @@ public class ScannerExercises {
     }
 
     public static void calculateFirstGradeEcuation() {
-        Scanner sc = new Scanner(System.in);
+        Scanner sc = getNewScanner();
         System.out.print("Enter ax: ");
         int a = sc.nextInt();
 
@@ -109,8 +119,8 @@ public class ScannerExercises {
     }
 
     public static int calcMedianGrade() {
-        Scanner sc = new Scanner(System.in);
-        int result = 0;
+        Scanner sc = getNewScanner();
+        int result;
 
         System.out.print("Enter first grade: ");
         int firstGrade = sc.nextInt();
@@ -141,7 +151,7 @@ public class ScannerExercises {
     }
 
     public static void calculateSecondGradeEcuation() {
-        Scanner sc = new Scanner(System.in);
+        Scanner sc = getNewScanner();
         System.out.print("Enter a: ");
         int a = sc.nextInt();
         System.out.print("Enter b: ");
@@ -149,9 +159,106 @@ public class ScannerExercises {
         System.out.print("Enter c: ");
         int c = sc.nextInt();
 
-        // +
-        System.out.println("First value is: " + (float) (-b + (Math.sqrt(Math.pow(b, 2) - (4 * a * c)))) / (2 * a));
-        // -
-        System.out.println("Second value is: " + (float) (-b - (Math.sqrt(Math.pow(b, 2) - (4 * a * c)))) / (2 * a));
+        // Discriminante (Δ)
+        double sqrt = (Math.sqrt(Math.pow(b, 2) - (4 * a * c)));
+
+        if (sqrt > 0) {
+            System.out.println("There's two possible solutions because sqrt > 0");
+
+            // +
+            System.out.println("First value is: " + (float) (-b + sqrt) / (2 * a));
+            // -
+            System.out.println("Second value is: " + (float) (-b - sqrt) / (2 * a));
+        } else if (sqrt == 0) {
+            System.out.println("There's one possible solution because sqrt = 0");
+
+            // +
+            System.out.println("First value is: " + (float) (-b + sqrt) / (2 * a));
+        } else {
+            System.out.println("There's no real solution because sqrt < 0");
+        }
+    }
+
+    public static void calculateHoroscope() {
+        Scanner sc = getNewScanner();
+
+        System.out.print("Enter your birth day: ");
+        int day = sc.nextInt();
+
+        System.out.print("Enter your birth month (1-12): ");
+        int month = sc.nextInt();
+
+        if ((month == 3 && day >= 21) || (month == 4 && day <= 20)) {
+            System.out.println("Aries");
+        } else if ((month == 4 && day >= 21) || (month == 5 && day <= 20)) {
+            System.out.println("Taurus");
+        } else if ((month == 5 && day >= 21) || (month == 6 && day <= 20)) {
+            System.out.println("Gemini");
+        } else if ((month == 6 && day >= 21) || (month == 7 && day <= 22)) {
+            System.out.println("Cancer");
+        } else if ((month == 7 && day >= 23) || (month == 8 && day <= 22)) {
+            System.out.println("Leo");
+        } else if ((month == 8 && day >= 23) || (month == 9 && day <= 22)) {
+            System.out.println("Virgo");
+        } else if ((month == 9 && day >= 23) || (month == 10 && day <= 22)) {
+            System.out.println("Libra");
+        } else if ((month == 10 && day >= 23) || (month == 11 && day <= 21)) {
+            System.out.println("Scorpio");
+        } else if ((month == 11 && day >= 22) || (month == 12 && day <= 21)) {
+            System.out.println("Sagittarius");
+        } else if ((month == 12 && day >= 22) || (month == 1 && day <= 19)) {
+            System.out.println("Capricorn");
+        } else if ((month == 1 && day >= 20) || (month == 2 && day <= 18)) {
+            System.out.println("Aquarius");
+        } else if ((month == 2 && day >= 19) || (month == 3 && day <= 20)) {
+            System.out.println("Pisces");
+        } else {
+            System.out.println("Out of range! \n Please re-run and enter valid date"); // If the date is invalid
+        }
+    }
+
+    public static void getRemainingSecondsOfDayByHour() {
+        Scanner sc = getNewScanner();
+
+        System.out.print("Enter hour (24h format): ");
+        int hour = sc.nextInt();
+        System.out.print("Enter minute (0-59): ");
+        int minute = sc.nextInt();
+
+        int secondsElapsed = (hour * 3600) + (minute * 60);
+        int secondsUntilMidnight = (24 * 3600) - secondsElapsed;
+
+        System.out.println(secondsUntilMidnight + "''" + " until midnight");
+    }
+
+    public static void sortThreeNumbers() {
+        Scanner sc = getNewScanner();
+
+        int auxiliar;
+
+        System.out.print("Enter number 1: ");
+        int n1 = sc.nextInt();
+        System.out.print("Enter number 2: ");
+        int n2 = sc.nextInt();
+        System.out.print("Enter number 3: ");
+        int n3 = sc.nextInt();
+
+        if (n1 > n2) {
+            auxiliar = n1;
+            n1 = n2;
+            n2 = auxiliar;
+        }
+        if (n2 > n3) {
+            auxiliar = n2;
+            n2 = n3;
+            n3 = auxiliar;
+        }
+        if (n1 > n2) {
+            auxiliar = n1;
+            n1 = n2;
+            n2 = auxiliar;
+        }
+
+        System.out.println("Sorted numbers: " + n1 + ", " + n2 + ", " + n3 + ".");
     }
 }
