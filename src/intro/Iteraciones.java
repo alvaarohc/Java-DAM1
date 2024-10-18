@@ -10,7 +10,7 @@ public class Iteraciones {
 
     public static void main(String[] args) {
 //        getNumberFactorial();
-        throwCoin();
+        throwCoin(new Scanner(System.in), "Cuantas veces quieres tirar la moneda: ");
     }
 
     public static void getNumberFactorial() {
@@ -31,22 +31,31 @@ public class Iteraciones {
         }
     }
 
-    public static void throwCoin() {
-        int cara = 1;
+    public static void throwCoin(Scanner sc, String message) {
+        System.out.print(message);
+        int tiradas = sc.nextInt();
+        int tiradasInicio = tiradas;
 
-        int caras = 0;
-        int cruzes = 0;
+        int totalCaras = 0;
+        int totalCruzes = 0;
 
-        while (caras < 10) {
+        while (tiradas > 0) {
             int caraCruz = (int) (Math.random() * 2);
-            if (caraCruz == cara) {
-                caras++;
-                System.out.println("Cara número " + caras);
+
+            if (caraCruz == 1) {
+                totalCaras++;
             } else {
-                cruzes++;
+                totalCruzes++;
             }
+            tiradas--;
         }
 
-        System.out.println("FIN DEL PROGRAMA, HAN SALIDO " + cruzes + " CRUZES");
+        System.out.println("El total de caras en las "
+                + tiradasInicio + " tiradas"
+                + " ha sido: " + totalCaras);
+        System.out.println("El total de cruzes en las "
+                + tiradasInicio + " tiradas"
+                + " ha sido: " + totalCruzes);
+
     }
 }
