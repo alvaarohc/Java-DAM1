@@ -9,7 +9,8 @@ import java.util.Scanner;
 public class Iteraciones {
 
     public static void main(String[] args) {
-        getNumberFactorial();
+//        getNumberFactorial();
+        throwCoin();
     }
 
     public static void getNumberFactorial() {
@@ -28,5 +29,24 @@ public class Iteraciones {
             }
 
         }
+    }
+
+    public static void throwCoin() {
+        int cara = 1;
+
+        int caras = 0;
+        int cruzes = 0;
+
+        while (caras < 10) {
+            int caraCruz = (int) (Math.random() * 2);
+            if (caraCruz == cara) {
+                caras++;
+                System.out.println("Cara número " + caras);
+            } else {
+                cruzes++;
+            }
+        }
+
+        System.out.println("FIN DEL PROGRAMA, HAN SALIDO " + cruzes + " CRUZES");
     }
 }
