@@ -6,50 +6,15 @@ import java.util.Scanner;
  *
  * @author alvaro.hercol
  */
-public class PiedraPapelTijeraYRestaurante {
+// CONDICIONALES
+public class Restaurante {
 
     public static void main(String[] args) {
-//        piedraPapelTijera();
         restaurante();
     }
 
-    public static Scanner newScanner() {
-        Scanner sc = new Scanner(System.in);
-        return sc;
-    }
-
-    public static void piedraPapelTijera() {
-        Scanner sc = newScanner();
-
-        System.out.print("Turno del jugador 1 (introduzca piedra, papel o tijera): ");
-        String jugador1 = sc.nextLine().trim().toLowerCase();
-
-        System.out.print("Turno del jugador 2 (introduzca piedra, papel o tijera): ");
-        String jugador2 = sc.nextLine().trim().toLowerCase();
-
-        if (jugador1.equals(jugador2)) {
-            System.out.println("Empate!");
-        } else if (jugador1.equals("tijera") && jugador2.equals("papel")) {
-            System.out.println("Gana el jugador 1");
-        } else if (jugador1.equals("papel") && jugador2.equals("tijera")) {
-            System.out.println("Gana el jugador 2");
-        } else if (jugador1.equals("piedra") && jugador2.equals("tijera")) {
-            System.out.println("Gana el jugador 1");
-        } else if (jugador1.equals("tijera") && jugador2.equals("piedra")) {
-            System.out.println("Gana el jugador 2");
-        } else if (jugador1.equals("tijera") && jugador2.equals("piedra")) {
-            System.out.println("Gana el jugador 2");
-        } else if (jugador1.equals("papel") && jugador2.equals("piedra")) {
-            System.out.println("Gana el jugador 1");
-        } else if (jugador1.equals("piedra") && jugador2.equals("papel")) {
-            System.out.println("Gana el jugador 2");
-        } else {
-            System.out.println("Valor introducido no valido.\nPorfavor, ejecute de nuevo.");
-        }
-    }
-
     public static void restaurante() {
-        Scanner sc = newScanner();
+        Scanner sc = new Scanner(System.in);
 
         boolean error = false;
         float total = 0.00f;
@@ -59,6 +24,7 @@ public class PiedraPapelTijeraYRestaurante {
         System.out.println("¿Qué ha tomado de beber? (zumo o café): ");
         String bebida = sc.nextLine().trim().toLowerCase();
         System.out.println(bebida);
+
         // Comida
         switch (comida) {
             case "palmera":
@@ -102,4 +68,5 @@ public class PiedraPapelTijeraYRestaurante {
             System.out.println("El total a pagar es: " + total);
         }
     }
+
 }
