@@ -75,6 +75,6 @@ public class EjerciciosIteraciones {
 
         System.out.println("La media de los " + contadorNumerosIntroducidos
                 + " números que has introducido es: "
-                + num / contadorNumerosIntroducidos);
+                + ((float) num / contadorNumerosIntroducidos));
     }
 }
