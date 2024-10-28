@@ -6,7 +6,14 @@ public class EjerciciosIteraciones {
     public static void main(String[] args) {
 //        cajaFuerte();
 //        tablaDeMultiplicarDeN();
-        calcularMedia();
+//        calcularMedia();
+//        numeroCuadradoCubo();
+//        nPrimerosTerminosFibonacci();
+//        negativoPositivo();
+//        esNumeroPrimo();
+//        dibujarPiramide();
+        dibujarPiramideHueca();
+//        dibujarPiramideSerieNumeros();
     }
 
     public static void cajaFuerte() {
@@ -73,8 +80,147 @@ public class EjerciciosIteraciones {
             num += userInput;
         }
 
-        System.out.println("La media de los " + contadorNumerosIntroducidos
-                + " números que has introducido es: "
-                + ((float) num / contadorNumerosIntroducidos));
+        System.out.println("La media de los " + contadorNumerosIntroducidos + " números que has introducido es: " + ((float) num / contadorNumerosIntroducidos));
+    }
+
+    public static void numeroCuadradoCubo() {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Introduce el número de inicio: ");
+        int numIninicio = sc.nextInt();
+
+        for (int i = numIninicio; i > 0; i--) {
+            System.out.println(numIninicio + " | " + (int) Math.pow(numIninicio, 2) + " | " + (int) Math.pow(numIninicio, 3));
+
+            numIninicio--;
+        }
+    }
+
+    public static void nPrimerosTerminosFibonacci() {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Cuantos términos quieres que muestre el programa: ");
+        int cantidad = sc.nextInt();
+        int val = 0;
+        int val1 = 1;
+        int sum = 0;
+
+        for (int i = 0; i < cantidad; i++) {
+            System.out.println(sum); // Imprime el siguiente termino
+            sum = val + val1; // Calcula el siguiente PUTO FIBONACCI
+            val = val1; // Mueve el valor del primero al anterior
+            val1 = sum; // Asigna el anterior valor del BAUTISTA de FIBONACCI al primer valor
+        }
+    }
+
+    public static void negativoPositivo() {
+        Scanner sc = new Scanner(System.in);
+
+        int positivo = 0;
+        int negativo = 0;
+
+        for (int i = 1; i < 11; i++) {
+            System.out.println("Introduce el número " + i + ": ");
+            int num = sc.nextInt();
+
+            if (num >= 0) {
+                positivo++;
+            } else negativo++;
+        }
+
+        System.out.println("Ha introducido " + positivo + " números positivos y " + negativo + " negativos");
+    }
+
+    public static void esNumeroPrimo() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Introduce un número: ");
+        int num = sc.nextInt();
+        int count = 0;
+
+        for (int i = 1; i <= num; i++) {
+            if (num % i == 0) {
+                count++;
+            }
+        }
+
+        System.out.println("El número " + num + (count == 2 ? " es primo" : " no es primo"));
+    }
+
+    public static void dibujarPiramide() {
+        Scanner sc = new Scanner(System.in);
+
+        // Altura
+        System.out.print("Introduce la altura: ");
+        int height = sc.nextInt();
+
+        // Carácter
+        System.out.print("Introduce el carácter que forma la pirámide: ");
+        String character = sc.next();
+
+        int charNum = 0;
+
+        for (int i = 1; i <= height; i++) {
+            for (int j = 1; j < height - charNum; j++) {
+                System.out.print(" ");
+            }
+            for (int j = 0; j < charNum * 2 + 1; j++) {
+                System.out.print(character);
+            }
+            charNum++;
+            System.out.println();
+        }
+    }
+
+    public static void dibujarPiramideHueca() {
+        Scanner sc = new Scanner(System.in);
+
+        // Altura
+        System.out.print("Introduce la altura: ");
+        int height = sc.nextInt();
+
+        // Carácter
+        System.out.print("Introduce el carácter que forma la pirámide: ");
+        String character = sc.next();
+
+        for (int i = 0; i < height; i++) { // Da altura a la pirámide
+            for (int j = 0; j < height - i; j++) { // Espacios laterales
+                System.out.print(" ");
+            }
+            for (int k = 0; k < (i * 2) + 1; k++) {  // Imprime el carácter o un espacio o la última línea de carácteres
+                if (k == 0 || k == (i * 2 + 1) - 1) {
+                    System.out.print(character);
+                } else if (i == height - 1) {
+                    System.out.print(character);
+                } else {
+                    System.out.print(" ");
+                }
+            }
+            System.out.println();
+        }
+    }
+
+    public static void dibujarPiramideSerieNumeros() {
+        Scanner sc = new Scanner(System.in);
+
+
+        // Carácter
+        System.out.print("Introduce el numero que forma serie de la pirámide: ");
+        int num = sc.nextInt();
+
+        int spaceNum = 0;
+
+        for (int i = 1; i <= num; i++) {
+            for (int j = 1; j < num - spaceNum; j++) {
+                System.out.print(" ");
+            }
+            for (int j = 1; j <= i; j++) {
+                System.out.print(j);
+            }
+            for (int j = i - 1; j >= 1; j--) {
+                System.out.print(j);
+            }
+            spaceNum++;
+            System.out.println();
+        }
     }
 }
