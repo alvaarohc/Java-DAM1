@@ -12,8 +12,11 @@ public class EjerciciosIteraciones {
 //        negativoPositivo();
 //        esNumeroPrimo();
 //        dibujarPiramide();
-        dibujarPiramideHueca();
+//        dibujarPiramideHueca();
 //        dibujarPiramideSerieNumeros();
+//        darVueltaNumero();
+//        dibujarL();
+        dibujarLForAnidado();
     }
 
     public static void cajaFuerte() {
@@ -221,6 +224,41 @@ public class EjerciciosIteraciones {
             }
             spaceNum++;
             System.out.println();
+        }
+    }
+
+    public static void darVueltaNumero() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Introduce un número: ");
+        int num = sc.nextInt();
+        int newNum = 0;
+
+        while (num > 0) {
+            int digit = num % 10; // Extrae el último dígito, ya que el resto de X / 10 siempre es el último número
+            newNum = num * 10 + digit; // Al multiplicarlo por 10 se obtiene la posición en la que va.
+            num /= 10; // Quita el ultimo digito.
+        }
+
+        System.out.println(newNum);
+    }
+
+    public static void dibujarL() {
+        for (int i = 0; i < 4; i++) {
+            System.out.println("*");
+        }
+        for (int i = 0; i < 3; i++) {
+            System.out.print("* ");
+        }
+    }
+
+    public static void dibujarLForAnidado() {
+        for (int i = 0; i < 4; i++) {
+            System.out.println("*");
+            if (i == 3) {
+                for (int j = 0; j < 3; j++) {
+                    System.out.print("* ");
+                }
+            }
         }
     }
 }
