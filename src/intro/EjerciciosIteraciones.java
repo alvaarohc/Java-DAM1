@@ -16,7 +16,8 @@ public class EjerciciosIteraciones {
 //        dibujarPiramideSerieNumeros();
 //        darVueltaNumero();
 //        dibujarL();
-        dibujarLForAnidado();
+//        dibujarLForAnidado();a
+        dibujarU();
     }
 
     public static void cajaFuerte() {
@@ -259,6 +260,22 @@ public class EjerciciosIteraciones {
                     System.out.print("* ");
                 }
             }
+        }
+    }
+
+    public static void dibujarU() {
+        int altura = 5;
+        for (int i = 0; i < altura - 1; i++) {
+            System.out.print("*");
+            for (int j = 0; j < altura - 2; j++) {
+                System.out.print(" ");
+            }
+            System.out.print("*");
+            System.out.println();
+        }
+
+        for (int i = 0; i < altura - 3; i++) {
+            System.out.print(" *");
         }
     }
 }
