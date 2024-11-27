@@ -22,7 +22,9 @@ public class IntroduccionArrays {
 //            System.out.print(arr[i] + " ");
 //        }
 
-        graficoTemperaturasMediasPorMeses();
+//        graficoTemperaturasMediasPorMeses();
+
+        rellenarArrayYMostrarMinMax();
     }
 
     public static void rotarDerecha(int[] nums) {
@@ -119,6 +121,54 @@ public class IntroduccionArrays {
             } else {
                 System.out.print(" " + i);
             }
+        }
+    }
+
+    public static void rellenarArrayYMostrarMinMax() {
+        final int NUM_ELEMENTOS = 100;
+        int[] arr = new int[NUM_ELEMENTOS];
+        int counter = 0;
+        int minVal = 500; // Empieza en 500 así se le va restando al encontrar valores menores
+        int maxVal = 0;
+
+        for (int i = 0; i < arr.length; i++) { // Llenar el array
+            int num = (int) (Math.random() * 501);
+            arr[i] = num;
+        }
+
+        // Mostrar array
+        System.out.println("[");
+        for (int i = 0; i < arr.length; i++) {
+            if (counter == 6) { // Saltos de línea cada 6 números
+                counter = 0;
+                System.out.println();
+            }
+
+            if (i == arr.length - 1) { // El ultimo número no tendrá coma
+                System.out.println(arr[i]);
+            } else System.out.print(arr[i] + ", ");
+
+            counter++;
+        }
+        System.out.println("]");
+
+        // Preguntar si quiere el mínimo y el máximo y mostrarlo
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Quieres mostrar el valor mínimo y máximo (si, no): ");
+        String mostrar = sc.nextLine().toLowerCase();
+
+        if (mostrar.equals("si")) {
+            System.out.println("(" + mostrar + ") -> De acuerdo, mostrando valores...");
+            for (int num : arr) {
+                if (num > maxVal) maxVal = num;
+                if (num < minVal) minVal = num;
+            }
+            System.out.println("El valor más alto es: " + maxVal);
+            System.out.println("El valor más bajo es: " + minVal);
+        } else if (mostrar.equals("no")) {
+            System.out.println("(" + mostrar + ") -> Finalizando programa...");
+        } else {
+            System.out.println("Valor invalido!\nPor favor, ejecuta de nuevo e introduce 'si' o 'no'.");
         }
     }
 }
