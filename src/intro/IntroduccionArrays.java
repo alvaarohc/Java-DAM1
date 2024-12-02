@@ -24,7 +24,8 @@ public class IntroduccionArrays {
 
 //        graficoTemperaturasMediasPorMeses();
 
-        rellenarArrayYMostrarMinMax();
+//        rellenarArrayYMostrarMinMax();
+        generearDiezNumerosYPedirUno();
     }
 
     public static void rotarDerecha(int[] nums) {
@@ -124,51 +125,124 @@ public class IntroduccionArrays {
         }
     }
 
+    /**
+     * @param arr    el array a iterar
+     * @param maxVal el valor máximo posible almacenado
+     * @return el valor más pequeño
+     */
+    public static int buscarMin(int[] arr, int maxVal) {
+        int minVal = maxVal;
+
+        for (int num : arr) {
+            if (num < minVal) minVal = num;
+        }
+
+        return minVal;
+    }
+
+    /**
+     * @param arr el array a iterar
+     */
+    public static int buscarMax(int[] arr) {
+        int maxVal = 0;
+
+        for (int num : arr) {
+            if (num > maxVal) maxVal = num;
+        }
+
+        return maxVal;
+    }
+
+    /**
+     * @param arr        el array a iterar
+     * @param min        valor min
+     * @param max        valor max
+     * @param mostrarMin boolean, mostrar o no el mínimo
+     * @param mostrarMax boolean, mostrar o no el máximo
+     */
+    public static void imprimirArrayFormateado(int[] arr, int min, int max, boolean mostrarMin, boolean mostrarMax) {
+        int counter = 0;
+
+        System.out.println("[");
+        for (int i = 0; i < arr.length; i++) {
+            if (mostrarMin && arr[i] == min) {
+                System.out.print("-->" + arr[i] + "<--" + ", ");
+            } else if (mostrarMax && arr[i] == max) {
+                System.out.print("-->" + arr[i] + "<--" + ", ");
+            } else {
+                System.out.print(arr[i] + ", ");
+            }
+
+            if (counter == 6) { // Saltos de línea cada 6 números
+                counter = 0;
+                System.out.println();
+            }
+
+            counter++;
+        }
+        System.out.println("]");
+    }
+
+    // Solo imprimir el array con formato
+    public static void imprimirArrayFormateadoSinMinMax(int[] arr) {
+        imprimirArrayFormateado(arr, 0, 0, false, false);
+    }
+
     public static void rellenarArrayYMostrarMinMax() {
         final int NUM_ELEMENTOS = 100;
         int[] arr = new int[NUM_ELEMENTOS];
-        int counter = 0;
-        int minVal = 500; // Empieza en 500 así se le va restando al encontrar valores menores
-        int maxVal = 0;
+        final int MAX_VAL = 500;
+
 
         for (int i = 0; i < arr.length; i++) { // Llenar el array
             int num = (int) (Math.random() * 501);
             arr[i] = num;
         }
 
-        // Mostrar array
-        System.out.println("[");
-        for (int i = 0; i < arr.length; i++) {
-            if (counter == 6) { // Saltos de línea cada 6 números
-                counter = 0;
-                System.out.println();
-            }
-
-            if (i == arr.length - 1) { // El ultimo número no tendrá coma
-                System.out.println(arr[i]);
-            } else System.out.print(arr[i] + ", ");
-
-            counter++;
-        }
-        System.out.println("]");
+        imprimirArrayFormateadoSinMinMax(arr);
+        final int MIN = buscarMin(arr, MAX_VAL);
+        final int MAX = buscarMax(arr);
 
         // Preguntar si quiere el mínimo y el máximo y mostrarlo
         Scanner sc = new Scanner(System.in);
-        System.out.print("Quieres mostrar el valor mínimo y máximo (si, no): ");
+        System.out.print("Quieres mostrar el valor mínimo o máximo (min, max): ");
         String mostrar = sc.nextLine().toLowerCase();
 
-        if (mostrar.equals("si")) {
-            System.out.println("(" + mostrar + ") -> De acuerdo, mostrando valores...");
-            for (int num : arr) {
-                if (num > maxVal) maxVal = num;
-                if (num < minVal) minVal = num;
-            }
-            System.out.println("El valor más alto es: " + maxVal);
-            System.out.println("El valor más bajo es: " + minVal);
-        } else if (mostrar.equals("no")) {
+        System.out.println("(" + mostrar + ") -> De acuerdo, mostrando valores...");
+
+        if (mostrar.equals("max")) {
+            imprimirArrayFormateado(arr, MIN, MAX, false, true);
+            System.out.println("(" + mostrar + ") -> Finalizando programa...");
+        } else if (mostrar.equals("min")) {
+            imprimirArrayFormateado(arr, MIN, MAX, true, false);
             System.out.println("(" + mostrar + ") -> Finalizando programa...");
         } else {
             System.out.println("Valor invalido!\nPor favor, ejecuta de nuevo e introduce 'si' o 'no'.");
         }
+    }
+
+    public static void generearDiezNumerosYPedirUno() {
+        Scanner sc = new Scanner(System.in);
+        boolean estaEnArray = false;
+        int[] arr = new int[10];
+
+
+        for (int i = 0; i < arr.length; i++) {
+            int num = (int) (Math.random() * 101);
+            arr[i] = num;
+        }
+
+        System.out.print("Introduzca un número del 0 al 100: ");
+        int num = sc.nextInt();
+
+        for (int arrNum : arr) {
+            if (arrNum == num) estaEnArray = true;
+        }
+
+        if (estaEnArray) {
+            System.out.println("El numero " + num + " si se encuentra en el array");
+        } else System.out.println("El numero " + num + " no se encuentra en el array");
+
+
     }
 }
