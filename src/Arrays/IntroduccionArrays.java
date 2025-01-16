@@ -1,4 +1,4 @@
-package intro;
+package Arrays;
 
 import java.util.Scanner;
 
@@ -23,9 +23,9 @@ public class IntroduccionArrays {
 //        }
 
 //        graficoTemperaturasMediasPorMeses();
-
 //        rellenarArrayYMostrarMinMax();
-        generearDiezNumerosYPedirUno();
+//        generearDiezNumerosYPedirUno();
+        arrayTemperaturas();
     }
 
     public static void rotarDerecha(int[] nums) {
@@ -232,17 +232,76 @@ public class IntroduccionArrays {
             arr[i] = num;
         }
 
-        System.out.print("Introduzca un número del 0 al 100: ");
-        int num = sc.nextInt();
+        while (!estaEnArray) {
+            System.out.print("Introduzca un número del 0 al 100: ");
+            int num = sc.nextInt();
 
-        for (int arrNum : arr) {
-            if (arrNum == num) estaEnArray = true;
+            for (int arrNum : arr) {
+                if (arrNum == num) {
+                    estaEnArray = true;
+                    break; // Para optimización, nos ahorramos alguna iteración
+                }
+            }
+
+            if (estaEnArray) {
+                System.out.println("El numero " + num + " si se encuentra en el array");
+            } else System.out.println("El numero " + num + " no se encuentra en el array");
+        }
+    }
+
+    public static float[] ordenarArrayTemperaturas(float[] arr) {
+        boolean cambio;
+
+        for (int i = 0; i < arr.length - 1; i++) {
+            cambio = false;
+
+            for (int j = 0; j < arr.length - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    float temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                    cambio = true;
+                }
+            }
+
+            if (!cambio) break; // Si no hay cambios de posición, ya está ordenado
         }
 
-        if (estaEnArray) {
-            System.out.println("El numero " + num + " si se encuentra en el array");
-        } else System.out.println("El numero " + num + " no se encuentra en el array");
+        return arr;
+    }
 
+    public static void arrayTemperaturas() {
+        Scanner sc = new Scanner(System.in);
+        float[] arrTemp = new float[10];
+        int counter = 0;
+        int totalValidas = 0;
 
+        for (int i = 0; i < arrTemp.length; i++) {
+            System.out.print("Introduce un número en el rango de [-50, 50]: ");
+            float num = sc.nextFloat();
+
+            if (num < -50 || num > 50) {
+                System.out.println("Número introducido fuera de rango! Finalizando programa");
+                for (int j = i; j < arrTemp.length; j++) {
+                    arrTemp[j] = 999;
+                }
+                break;
+            } else {
+                arrTemp[i] = num;
+                totalValidas++;
+            }
+        }
+
+        System.out.println("Ha introducido " + totalValidas + " temperaturas válidas.");
+        float[] arrayOrdenado = ordenarArrayTemperaturas(arrTemp);
+        for (int i = 0; i < arrayOrdenado.length; i++) {
+            if (i == 0) {
+                System.out.print("[");
+            } else if (i == arrayOrdenado.length - 1) {
+                System.out.print(arrayOrdenado[i] + "]");
+            } else {
+                System.out.print(arrayOrdenado[i] + ", ");
+            }
+        }
     }
 }
