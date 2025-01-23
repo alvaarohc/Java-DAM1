@@ -2,7 +2,7 @@ package Matrices;
 
 import java.util.Scanner;
 
-public class EjerciciosMatrices {
+public class HojaCalculo {
     public static void main(String[] args) {
         hojaCalculo();
     }
