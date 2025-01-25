@@ -11,23 +11,6 @@ public class EjerciciosRefuerzo {
         transponerMatriz();
     }
 
-    /* ===================== HELPERS ===================== */
-    public static void imprimirMatriz(int[][] matriz) {
-        System.out.println(); // Espacio por arriba
-        System.out.println("===== Matriz =====");
-        for (int i = 0; i < matriz.length; i++) {
-            for (int j = 0; j < matriz[0].length; j++) {
-                System.out.printf("%-4d", matriz[i][j]);
-            }
-            System.out.println();
-        }
-        System.out.println(); // Espacio debajo de la matriz
-    }
-    /* =================================================== */
-
-
-    /* =====> EJERCICIOS <===== */
-
     /*
      * Crea una matriz de tamaño MxN, donde M y N son introducidos por el usuario.
      * Rellena la matriz con los números del 1 al M*N,
@@ -53,7 +36,7 @@ public class EjerciciosRefuerzo {
             }
         }
 
-        imprimirMatriz(matriz);
+        Helpers.imprimirMatriz(matriz);
     }
 
     /*
@@ -70,7 +53,7 @@ public class EjerciciosRefuerzo {
             }
         }
 
-        imprimirMatriz(matriz);
+        Helpers.imprimirMatriz(matriz);
 
         for (int i = 0; i < matriz.length; i++) {
             int sumFila = 0;
@@ -106,7 +89,7 @@ public class EjerciciosRefuerzo {
             }
         }
 
-        imprimirMatriz(matriz);
+        Helpers.imprimirMatriz(matriz);
 
         System.out.print("El valor máximo es " + max + " y se encuentra en la columna ");
         System.out.println((cordCols + 1) + " y fila " + (cordRows + 1));
@@ -126,7 +109,7 @@ public class EjerciciosRefuerzo {
                 {7, 8, 9}  //2 [2][0] [2][1] [2][2]
         };
 
-        imprimirMatriz(matriz);
+        Helpers.imprimirMatriz(matriz);
 
         for (int i = 0; i < matriz.length; i++) {
             int prev = 0;
@@ -137,7 +120,7 @@ public class EjerciciosRefuerzo {
             }
 
         }
-        imprimirMatriz(matrizAux);
+        Helpers.imprimirMatriz(matrizAux);
 
     }
 }
