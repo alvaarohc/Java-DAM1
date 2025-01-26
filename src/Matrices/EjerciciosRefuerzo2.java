@@ -6,7 +6,8 @@ public class EjerciciosRefuerzo2 {
     public static void main(String[] args) {
 //        contarElementosMayoresQueValorDado();
 //        comprobarFilaHomogenea();
-        intercambiarDosFilas();
+//        intercambiarDosFilas();
+        comprobarMatrizSimetrica();
     }
 
 
@@ -136,5 +137,66 @@ public class EjerciciosRefuerzo2 {
         }
 
         Helpers.imprimirMatriz(matriz);
+    }
+
+    /*
+     * Crea una matriz cuadrada de 4x4 con valores dados. Verifica si es simétrica
+     * (es decir, si la matriz es igual a su transpuesta).
+     * */
+    public static void comprobarMatrizSimetrica() {
+        /*
+        COPIA ESTA PARA COMPROBAR QUE NO ES SIMETRICA
+
+        {1, 1, 1, 1},
+        {2, 2, 2, 2},
+        {3, 3, 3, 3},
+        {4, 4, 4, 4},
+        */
+
+        // Es simetrica
+        int[][] matriz = {
+                {1, 5, -3, 9},
+                {5, 0, 2, -1},
+                {-3, 2, 8, 4},
+                {9, -1, 4, 6},
+        };
+        int[][] matrizTranspuesta = new int[matriz.length][matriz[0].length];
+
+
+        /* CREAR MATRIZ TRASPUESTA */
+        for (int i = 0; i < matriz.length; i++) {
+            int prev = 0;
+            for (int j = 0; j < matriz[0].length; j++) {
+                prev = matriz[i][j];
+                matrizTranspuesta[i][j] = matriz[j][i];
+                matriz[j][i] = prev;
+            }
+        }
+
+        Helpers.imprimirMatriz(matriz);
+        Helpers.imprimirMatriz(matrizTranspuesta);
+
+        /* COMPROBAR SIMETRIA */
+        boolean simetrica = true;
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[0].length; j++) {
+                if (matriz[i][j] != matrizTranspuesta[i][j]) {
+                    simetrica = false;
+                    break;
+                }
+            }
+            if (!simetrica) break;
+        }
+
+        if (simetrica) {
+            System.out.println("La matriz mostrada a continuación es simetrica.");
+        } else {
+            System.out.println("La matriz mostrada a continuación no es simetrica.");
+        }
+        System.out.println("Antes de transponer");
+        Helpers.imprimirMatriz(matriz);
+        System.out.println("Después de transponer");
+        Helpers.imprimirMatriz(matrizTranspuesta);
+
     }
 }
