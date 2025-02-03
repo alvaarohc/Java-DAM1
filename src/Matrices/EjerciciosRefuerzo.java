@@ -1,6 +1,5 @@
 package Matrices;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class EjerciciosRefuerzo {
@@ -8,7 +7,9 @@ public class EjerciciosRefuerzo {
 //        rellenarMatriz();
 //        sumarFilasMatriz();
 //        buscarValorMaximoMatriz();
-        transponerMatriz();
+//        transponerMatriz();
+//        comprobarMatrizIdentidad();
+//        sumarDiagonalPrincipal();
     }
 
     /*
@@ -112,15 +113,75 @@ public class EjerciciosRefuerzo {
         Helpers.imprimirMatriz(matriz);
 
         for (int i = 0; i < matriz.length; i++) {
-            int prev = 0;
             for (int j = 0; j < matriz[0].length; j++) {
-                prev = matriz[i][j];
                 matrizAux[i][j] = matriz[j][i];
-                matrizAux[j][i] = prev;
+                matrizAux[j][i] = matriz[i][j];
             }
 
         }
         Helpers.imprimirMatriz(matrizAux);
-
     }
+
+    /*
+     * Crea una matriz cuadrada de 3x3 y verifica si es una matriz identidad
+     * (todos los elementos de la diagonal son 1 y el resto son 0).
+     * */
+    public static void comprobarMatrizIdentidad() {
+        int[][] matriz = {
+                {1, 0, 0},
+                {0, 1, 0},
+                {0, 0, 1}
+        };
+
+        boolean esIdentidad = true;
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[0].length; j++) {
+                if (matriz[i][i] != 1) {
+                    esIdentidad = false;
+                    break;
+                } else if (i != j && matriz[i][j] != 0) {
+                    esIdentidad = false;
+                    break;
+                }
+            }
+            if (!esIdentidad) {
+                System.out.println("La matriz: ");
+                Helpers.imprimirMatriz(matriz);
+                System.out.println("No es identidad.");
+                break;
+            }
+        }
+
+        if (esIdentidad) {
+            System.out.println("La matriz: ");
+            Helpers.imprimirMatriz(matriz);
+            System.out.println("Es identidad.");
+        }
+    }
+
+    /*
+     *  Crea una matriz cuadrada de tamaño 4x4 con valores
+     *  aleatorios entre 1 y 20. Calcula y muestra la suma
+     *  de los elementos que se encuentran en la diagonal
+     *  principal de la matriz.
+     * */
+    public static void sumarDiagonalPrincipal() {
+        int[][] matriz = new int[4][4];
+        int sum = 0;
+
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[0].length; j++) {
+                int num = (int) (Math.random() * 20 + 1);
+                matriz[i][j] = num;
+                if (j == matriz.length - 1 - i) {
+                    System.out.println(matriz[i][matriz.length - i - 1]);
+                    sum += num;
+                }
+            }
+        }
+
+        Helpers.imprimirMatriz(matriz);
+        System.out.println(sum);
+    }
+
 }

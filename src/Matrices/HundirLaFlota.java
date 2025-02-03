@@ -1,5 +1,7 @@
 package Matrices;
 
+import java.util.Random;
+
 public class HundirLaFlota {
     /* SNIPETS */
    /*
@@ -16,6 +18,7 @@ public class HundirLaFlota {
 
     public static void main(String[] args) {
         generarTablero();
+        colocarBarco();
     }
 
     static String[][] tablero = new String[11][11];
@@ -28,7 +31,6 @@ public class HundirLaFlota {
         if (letraActual > 'Z') {
             letraActual = 'A';
         }
-        System.out.println(letraActual);
         letra = String.valueOf(letraActual);
     }
 
@@ -47,5 +49,9 @@ public class HundirLaFlota {
             }
         }
         Helpers.imprimirMatrizStrings(tablero);
+    }
+
+    public static void colocarBarco() {
+
     }
 }
